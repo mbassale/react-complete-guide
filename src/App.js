@@ -41,17 +41,22 @@ class App extends Component {
     render() {
 
         const style = {
-            backgroundColor: 'white',
+            backgroundColor: 'green',
+            color: 'white',
             font: 'inherit',
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer'
         };
 
-        const persons = this.state.showPersons ? this.state.persons.map((person, index) =>
-            <Person key={index} name={person.name} age={person.age}
-                    click={() => this.deletePersonHandler(index)}
-                    changed={(evt) => this.nameChangedHandler(evt, person.id)} />) : null;
+        let persons = null;
+        if (this.state.showPersons) {
+            persons = this.state.persons.map((person, index) =>
+                <Person key={index} name={person.name} age={person.age}
+                        click={() => this.deletePersonHandler(index)}
+                        changed={(evt) => this.nameChangedHandler(evt, person.id)} />)
+            style.backgroundColor = 'red';
+        }
 
         return (
             <div className="App">
